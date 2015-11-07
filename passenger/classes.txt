@@ -1,0 +1,15 @@
+toyota 0	 
+vaz_(lada) 1 
+nissan 2 
+mercedes-benz 3 
+bmw 4 
+ford 5 
+hyundai 6 
+volkswagen 7 
+mitsubishi 8 
+chevrolet 9 
+kia 10 
+audi 11 
+honda 12 
+renault 13 
+opel 14
