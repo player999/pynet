@@ -46,10 +46,10 @@ def classify_bytes(image_bytes):
 	return val, idx
 
 def classify_file(image_fname):
-	return classify_bytes(open(image_fname, 'r'))
+	return classify_bytes(open(image_fname, 'r').read())
 
 def classify_file_label(image_fname):
-	val, idx = classify_bytes(open(image_fname, 'r'))
+	val, idx = classify_bytes(open(image_fname, 'r').read())
 	lab_string = labels_text[idx]
 	return val, lab_string
 
