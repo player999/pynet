@@ -11,7 +11,7 @@ MODEL_FILE = '/home/player999/Work/VehicleClassification/deploy_features.prototx
 PRETRAINED = '/home/player999/Work/VehicleClassification/GoogLenet/bvlc_googlenet.caffemodel'
 MEAN_FILE = '/home/player999/Work/digits/caffe/python/caffe/imagenet/ilsvrc_2012_mean.npy'
 CAFFE_ROOT = '/home/player999/Work/digits/caffe'
-LABEL_FILE = '/home/player999/Work/VehicleClassification/our_net/labels.txt'
+#LABEL_FILE = '/home/player999/Work/VehicleClassification/our_net/labels.txt'
 
 IMAGE_WIDTH = 224
 IMAGE_HEIGHT = 224
@@ -22,8 +22,9 @@ sys.path.insert(0,CAFFE_ROOT + '/python')
 import caffe
 
 #Create labels map
-labels = open(LABEL_FILE, 'r').readline()
-labels_text = list(map(lambda x: x.split(' ')[0],labels))
+if 'LABEL_FILE' in locals():
+	labels = open(LABEL_FILE, 'r').readlines()
+	labels_text = list(map(lambda x: x.split(' ')[0],labels))
 
 caffe.set_mode_cpu()
 net = caffe.Classifier(MODEL_FILE, PRETRAINED,
