@@ -16,7 +16,7 @@ sys.path.insert(0,CAFFE_ROOT + '/python')
 import caffe
 
 #Create labels map
-if 'LABEL_FILE' in locals():
+if 'LABEL_FILE' in globals():
 	labels = open(LABEL_FILE, 'r').readlines()
 	labels_text = list(map(lambda x: x.split(' ')[0],labels))
 
@@ -34,8 +34,8 @@ def feedforward_file(image_fname):
 
 def feedforward_bytes(image_bytes):
 	src_float = skimage.img_as_float(imread.imread_from_blob(image_bytes)).astype(np.float32)
-	if src_float.ndim == 1:
-		src_float = skimage.color.gray2rgb(src_float)
+	if src_float.shape[2] == 1:
+		src_float = skimage.color.gray2rgb(src_float[:,:,0])
 	prediction = net.predict([src_float]) 
 	return prediction
 
