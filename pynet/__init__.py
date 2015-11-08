@@ -1,5 +1,4 @@
 import numpy as np
-from images import *
 import imread
 import skimage.io
 import skimage.color
