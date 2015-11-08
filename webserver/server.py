@@ -5,6 +5,7 @@ from urlparse import urlparse
 import cgi
 import os
 import pynet
+import deepdream
 import json
 
 import sys
@@ -83,7 +84,9 @@ class StoreHandler(BaseHTTPRequestHandler):
                     fh.write(file_data)
                     
                 val, label = pynet.classify_bytes_label(file_data)
-                result = {"confidence":float(val), "class":label}
+		image = deepdream.deepdream_case1(file_data)
+		image = 'data:image/jpg;base64,' + image
+                result = {"confidence":float(val), "class":label, "image":image}
                 json_line = json.dumps(result)
                 self.wfile.write(json_line)
 
@@ -96,6 +99,6 @@ class StoreHandler(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     from BaseHTTPServer import HTTPServer
-    server = HTTPServer(('192.168.100.15', 1488), StoreHandler)
+    server = HTTPServer(('192.168.10.184', 1488), StoreHandler)
     print 'Starting server, use <Ctrl-C> to stop'
     server.serve_forever()

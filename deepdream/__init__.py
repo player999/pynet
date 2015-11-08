@@ -101,7 +101,7 @@ def deepdream(net, base_img, iter_n=10, octave_n=4, octave_scale=1.4,
 
 def find_guide(input_bytes):
     #Dummy guide
-    img = np.float32(imread.imread_from_blob(open('/storage/Work/VehicleClassification/best_car.jpg','rb').read()))
+    img = np.float32(imread.imread_from_blob(open('/home/denis/workspace/DataScienceHack/pynet/deepdream/new.jpg','rb').read()))
     if img.shape[2] == 1:
         img = skimage.color.gray2rgb(img[:,:,0])
     return img
