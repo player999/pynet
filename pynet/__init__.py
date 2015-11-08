@@ -40,8 +40,9 @@ def feedforward_bytes(image_bytes):
 
 def classify_bytes(image_bytes):
 	vector = feedforward_bytes(image_bytes)
+	ssum = np.sum(vector)
 	idx = np.argmax(vector)
-	val = np.amax(vector)
+	val = np.amax(vector) / ssum
 	return val, idx
 
 def classify_file(image_fname):
