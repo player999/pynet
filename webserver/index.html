@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+<link rel="stylesheet" href="./css/styles.css"/>
+<link rel="stylesheet" href="./css/fontello.css"/>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<link rel="stylesheet" href="./css/bootstrap.min.css"/>
+
+<title>Cars</title>
+
+</head>
+    <body>
+      <div class="jumbotron">
+        <div class="top-container">
+          <h1 class="icon-upload-cloud-outline">Give me your picture</h1>
+          <p class="col-md-offset-2">Imagine visual car recognition system</p>
+        </div>
+      </div>
+      <div class="col-md-12">
+          <form action="/upload.json" enctype="multipart/form-data" method="post" class="dropzone" drop-zone="" id="file-dropzone">
+              <input type="submit" />
+          </form>
+          <div class="row">
+              <div class="col-md-5 deep-view-pic"></div>
+              <div class="col-md-4 predicted-car"></div>
+          </div>
+      </div>
+    </body>
+<script type="text/javascript" src="script.js"></script>

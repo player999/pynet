@@ -1,0 +1,18 @@
+#file-dropzone  {
+    display: block;
+    width: 360px;
+    margin: 0 auto 25px auto;
+    padding: 35px;
+    color: #8d9499;
+    color: #97A1A8;
+    background: #fff;
+    border: 2px dashed #C8CBCE;
+    text-align: center;
+    -webkit-transition: box-shadow 0.3s, border-color 0.3s;
+    -moz-transition: box-shadow 0.3s, border-color 0.3s;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.top-container {
+    padding-left: 60px;
+}
