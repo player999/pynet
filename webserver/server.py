@@ -7,6 +7,7 @@ import os
 import pynet
 import deepdream
 import json
+import time
 
 import sys
 sys.path.insert(0,'../')
@@ -17,14 +18,15 @@ import cgi
 
 class StoreHandler(BaseHTTPRequestHandler):
     mime = {
-        ".html":"text/html",
-        ".htm":"text/html",
-        ".css":"text/css",
-        ".png":"image/png",
-        ".jpg":"image/jpeg",
-        ".jpeg":"image/jpeg",
-        ".js":"application/javascript",
-        "":"application/octet-stream"
+        ".html":  "text/html",
+        ".htm":   "text/html",
+        ".css":   "text/css",
+        ".png":   "image/png",
+        ".jpg":   "image/jpeg",
+        ".jpeg":  "image/jpeg",
+        ".js":    "application/javascript",
+        ".json":  "application/json",
+        "":       "application/octet-stream"
     }
 
     # Handle static files
@@ -68,7 +70,7 @@ class StoreHandler(BaseHTTPRequestHandler):
 
         # Begin the response
         self.send_response(200)
-
+        self.send_header('Content-type', 'application/json')
         self.end_headers()
 
         # Echo back information about what was posted in the form
@@ -85,7 +87,7 @@ class StoreHandler(BaseHTTPRequestHandler):
                     
                 val, label = pynet.classify_bytes_label(file_data)
 		image = deepdream.deepdream_case1(file_data)
-		image = 'data:image/jpg;base64,' + image
+		image = 'data:image/jpeg;base64,' + image
                 result = {"confidence":float(val), "class":label, "image":image}
                 json_line = json.dumps(result)
                 self.wfile.write(json_line)
@@ -99,6 +101,6 @@ class StoreHandler(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     from BaseHTTPServer import HTTPServer
-    server = HTTPServer(('192.168.10.184', 1488), StoreHandler)
+    server = HTTPServer(('', 1488), StoreHandler)
     print 'Starting server, use <Ctrl-C> to stop'
     server.serve_forever()
